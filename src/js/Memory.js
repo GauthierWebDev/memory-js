@@ -1,3 +1,7 @@
+const MemoryFruit = require('./MemoryFruit');
+
+const fruitsData = require('../data/fruits');
+
 class Memory {
 	constructor() {
 		this.fruits = [];
@@ -8,6 +12,19 @@ class Memory {
 	 */
 	newGame() {
     alert('newGame');
+    console.log(this.fruits);
+	}
+
+	/**
+	 * Récupère les différents fruits disponibles pour les stocker
+	 * dans l'instance actuelle de `Memory`, selon la class `MemoryFruit`.
+	 */
+	retrieveFruits() {
+		// On stocke tous les fruits disponibles dans le jeu et pour
+		// chaque fruit, on instancie à chaque fois la classe `MemoryFruit`.
+		fruitsData.forEach((fruit) => {
+      this.fruits.push(new MemoryFruit(fruit.name, fruit.translateY));
+    });
 	}
 
 	/**
@@ -30,6 +47,9 @@ class Memory {
 		// On prépare le bouton du header pour qu'il réagisse au clic
 		// et qu'il permette de démarrer une nouvelle partie.
 		this.attachEvent();
+
+		// On vient préparer notre liste de fruits.
+		this.retrieveFruits();
 	}
 }
 
