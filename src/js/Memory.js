@@ -13,8 +13,10 @@ class Memory {
 	 * Gestion du système de nouvelle partie.
 	 */
 	newGame() {
-		// On vient faire une nouvelle instanciation de notre class MemoryGameData.
+		// On vient faire une nouvelle instanciation de notre class MemoryGameData...
 		this.gameEngine = new MemoryGameEngine(this.fruits);
+    // ... puis on crée de nouvelles cartes.
+    this.gameEngine.createCards();
 	}
 
 	/**
