@@ -6,9 +6,9 @@ const MemoryHUD = require('./MemoryHUD');
 // à la partie en cours.
 class MemoryGameEngine {
   constructor(fruits, newGameCallback) {
-    this.fruitsPerGame = 2;
+    this.fruitsPerGame = 1;
 		this.msBetweenFlip = 1000;
-		this.maxSecondsPerGame = 2;
+		this.maxSecondsPerGame = 120;
 		this.fruits = fruits.shuffle().slice(0, this.fruitsPerGame);
     this.cards = [];
 		this.HUD = new MemoryHUD();
@@ -46,7 +46,7 @@ class MemoryGameEngine {
 	 * @param username
 	 */
 	submitScore(username) {
-		// todo
+		console.log(username);
 	}
 
 	/**
