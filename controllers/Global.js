@@ -1,4 +1,5 @@
 const Controller = require('./Controller');
+const ScoreService = require('../services/ScoreService');
 
 class GlobalController extends Controller {
 	constructor(req, res) {
@@ -15,8 +16,9 @@ class GlobalController extends Controller {
 		super(req, res);
 	}
 
-	sendHome() {
-		this.sendView('home');
+	async sendHome() {
+		const scores = await ScoreService.retrieveScores();
+		this.sendView('home', { scores });
 	}
 }
 
