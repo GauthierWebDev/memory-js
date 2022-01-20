@@ -68,6 +68,12 @@ class MemoryGameEngine {
 	displayLeaderboardHandler() {
 		// On fait disparaître doucement la fenêtre modale
 		this.HUD.vanishResults();
+
+		// Dans 500ms...
+		setTimeout(() => {
+			// ... on rend transparentes toutes les cartes...
+			this.HUD.vanishBoard();
+		}, 500);
 	}
 
 	/**
