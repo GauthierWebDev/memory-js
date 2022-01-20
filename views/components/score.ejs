@@ -1,3 +1,20 @@
+<%
+const formatDuration = (duration) => {
+  const splitDuration = duration.split(':');
+  const minutes = (parseInt(splitDuration[0], 10) * 60) + parseInt(splitDuration[1], 10);
+
+  return `${minutes}:${splitDuration[2]}`;
+};
+
+const formatDate = (date) => {
+  const day = date.getDate();
+  const month = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1;
+  const year = date.getFullYear();
+
+  return `${day}/${month}/${year}`;
+};
+%>
+
 <li class="Score">
   <span class="Score-Rank">
     <% if (score) { %>
@@ -11,12 +28,12 @@
   </span>
   <span class="Score-Duration">
     <% if (score) { %>
-      <%= score.elapsedTime; %>
+      <%= formatDuration(score.elapsedTime); %>
     <% } %>
   </span>
   <span class="Score-Date">
     <% if (score) { %>
-      <%= score.finishedAt; %>
+      <%= formatDate(score.finishedAt); %>
     <% } %>
   </span>
 </li>
