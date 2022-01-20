@@ -73,6 +73,19 @@ class MemoryGameEngine {
 		setTimeout(() => {
 			// ... on rend transparentes toutes les cartes...
 			this.HUD.vanishBoard();
+
+			// ... puis dans 300ms...
+			setTimeout(() => {
+				// ... on enlève le flou sur la grille de jeu...
+				this.HUD.removeBlurBoard();
+				// ... on supprime les cartes de la grille de jeu...
+				this.HUD.removeCards();
+				// ... on applique une classe CSS sur le tableau des scores
+				// pour qu'il ait une opacity à 0...
+				this.HUD.vanishLeaderboard();
+				// ... on enlève le `display: none;` sur le tableau des scores...
+				this.HUD.displayLeaderboard();
+			}, 300);
 		}, 500);
 	}
 

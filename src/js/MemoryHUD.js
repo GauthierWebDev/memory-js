@@ -269,6 +269,13 @@ class MemoryHUD {
 	}
 
 	/**
+	 * Fait apparaître le tableau des scores.
+	 */
+	displayLeaderboard() {
+		this.leaderboardContainer.classList.remove('Leaderboard--hidden');
+	}
+
+	/**
 	 * Masque le tableau des scores.
 	 */
 	hideLeaderboard() {
