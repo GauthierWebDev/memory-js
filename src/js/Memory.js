@@ -14,7 +14,7 @@ class Memory {
 	 */
 	newGame() {
 		// On vient faire une nouvelle instanciation de notre class MemoryGameData...
-		this.gameEngine = new MemoryGameEngine(this.fruits);
+		this.gameEngine = new MemoryGameEngine(this.fruits, () => this.newGame());
 
 		// ... puis on rend transparent le tableau des scores...
 		this.gameEngine.HUD.vanishLeaderboard();

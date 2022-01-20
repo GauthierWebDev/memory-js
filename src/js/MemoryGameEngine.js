@@ -5,7 +5,7 @@ const MemoryHUD = require('./MemoryHUD');
 // MemoryGameEngine est la class gérant tout ce qui est relatif
 // à la partie en cours.
 class MemoryGameEngine {
-  constructor(fruits) {
+  constructor(fruits, newGameCallback) {
     this.fruitsPerGame = 2;
 		this.msBetweenFlip = 1000;
 		this.maxSecondsPerGame = 2;
@@ -16,6 +16,12 @@ class MemoryGameEngine {
     this.canFlip = true;
     this.finishedAt = null;
     this.clock = new MemoryClock();
+		// Puisque nous sommes dans une instance de `MemoryGameEngine`,
+		// nous ne pouvons pas faire `this.newGame()` pour démarrer
+		// une nouvelle partie car cette méthode est propre à la class `Memory`.
+		// Cependant on peut stocker cette méthode dans notre instance
+		// pour pouvoir l'utiliser quand on le souhaite !
+		this.newGameCallback = newGameCallback;
   }
 
 	/**
@@ -63,11 +69,28 @@ class MemoryGameEngine {
 
 				// ... et enfin (promis c'est le dernier !) après 300ms...
 				setTimeout(() => {
+					// ... on démarre une nouvelle partie...
+					this.newGameCallback();
 					// ... et on supprime du DOM la fenêtre modale.
 					this.HUD.hideResultsForm();
 				}, 300);
 			}, 250);
 		}, 750);
+
+		// Ces trois `setTimeout` imbriqués peuvent heureusement être décomposés,
+		// c'est-à-dire ne pas être imbriqués à condition d'additionner les temps
+		// d'attente de chaque `setTimeout` !
+		//
+		// Exemple :
+		// 1. `setTimeout` imbriqués (250ms, puis 250ms)
+		// 	setTimeout(() => {
+		// 		/* ... */
+		// 		setTimeout(() => {/* ... */}, 250);
+		// 	}, 250);
+		//
+		// 2. `setTimeout` indépendants (250ms, puis 250ms + 250ms (500ms))
+		// 	setTimeout(() => {/* ... */}, 250);
+		// 	setTimeout(() => {/* ... */}, 500);
 	}
 
 	/**

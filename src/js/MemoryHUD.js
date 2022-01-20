@@ -192,6 +192,13 @@ class MemoryHUD {
 	}
 
 	/**
+	 * Supprime le flou sur la grille de jeu.
+	 */
+	removeBlurBoard() {
+		this.boardContainer.classList.remove('Board--blurred');
+	}
+
+	/**
 	 * Applique une classe CSS responsable d'une opacité à 0 sur
 	 * la grille de jeu.
 	 */
