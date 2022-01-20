@@ -30,6 +30,56 @@ class MemoryGameEngine {
 		// On modifie la valeur de la propriété "canFlip" à false pour
 		// pouvoir interdire le retournement d'autres cartes.
 		this.canFlip = false;
+
+    // Si les deux cartes ont le même fruit (apple, bananas etc)...
+		if (cards[0].fruit.name === cards[1].fruit.name) {
+			// ... alors on défini ces cartes comme "trouvées" et on enlève
+			// l'état de carte retournée.
+
+			// Pour chacune de ces deux cartes...
+			cards.forEach(card => {
+				// ... on ajoute la classe CSS `Card--found`...
+				card.DOMElement.classList.add('Card--found');
+				// ... on indique la carte comme déjà trouvée...
+				card.found = true;
+				// ... et on en fait de même pour le fruit.
+				card.fruit.found = true;
+			});
+
+			// ... puis dans 300ms, on retire la classe CSS `Card--visible` puisque cette
+			// carte fait partie du paire trouvée.
+			//
+			// "300ms ? Mais pourquoi ?"
+			// Nous avons une animation, lorsqu'une carte voit son état de carte retournée altéré, qui dure 300ms.
+			// Si nous faisons les deux changements de classes CSS en même temps,
+			// l'animation ne pourra pas se faire correctement.
+			// Il n'est question que de visuel, rien d'obligatoire, mais n'oublions pas que
+			// l'UI reste importante pour les utilisateurs, du moment que l'UX est bonne !
+			setTimeout(() => {
+				cards.forEach((card) => card.DOMElement.classList.remove('Card--visible'));
+			}, 300);
+
+			// Et on autorise le fait de pouvoir retourner des cartes à nouveau.
+			// Petit rappel : la ligne ci-dessous prend effet avant que la classe CSS soit supprimée dans
+			// le `setTimeout`, pas besoin d'attendre 300ms pour retourner de nouvelles cartes !
+			this.canFlip = true;
+		}
+		else {
+			// ... sinon, on retourne simplement les deux cartes
+			// après un court délai défini sur `this.msBetweenFlip`.
+			setTimeout(() => {
+				cards.forEach((card) => {
+					card.DOMElement.classList.remove('Card--visible');
+					// On va également autoriser de nouveau le retournement de cette
+					// même carte, puisque sa jumelle n'a pas été trouvée.
+					card.canFlip = true;
+				});
+
+				// On profite d'avoir retourné ces cartes pour également autoriser
+				// de nouveau le retournement des cartes, sans quoi le jeu se retrouverait bloqué.
+				this.canFlip = true;
+			}, this.msBetweenFlip);
+		}
   }
   
   /**
