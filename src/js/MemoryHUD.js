@@ -8,7 +8,19 @@ class MemoryHUD {
 
     // Tableau des scores    
 		this.leaderboardContainer = document.getElementById('Leaderboard');
+
+    // Cartes retournées
+    this.flippedCardsSpan = document.querySelector(':scope #moves span');
   }
+
+	/**
+	 * Actualise le nombre de cartes retournées au court de la partie en cours.
+	 *
+	 * @param flippedCards
+	 */
+	setFlippedCards(flippedCards) {
+		this.flippedCardsSpan.innerHTML = flippedCards;
+	}
 
 	/**
 	 * Masque le tableau des scores.

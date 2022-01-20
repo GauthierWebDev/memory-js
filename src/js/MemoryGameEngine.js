@@ -11,6 +11,14 @@ class MemoryGameEngine {
 		this.fruits = fruits.shuffle().slice(0, this.fruitsPerGame);
     this.cards = [];
 		this.HUD = new MemoryHUD();
+    this.flippedCards = 0;
+  }
+
+	/**
+	 * Actualise l'interface du jeu.
+	 */
+  refreshHUD() {
+		this.HUD.setFlippedCards(this.flippedCards);
   }
   
   /**
@@ -20,8 +28,12 @@ class MemoryGameEngine {
 	flipCard(currentCard) {
 		// On indique la carte cliquée comme retournée avec une classe CSS (face visible)...
 		currentCard.DOMElement.classList.add('Card--visible');
-		// ... on donne à notre objet le status retourné.
+		// ... on donne à notre objet le status retourné...
 		currentCard.flipped = true;
+    // ... on incrémente le nombre total de cartes retournées...
+    this.flippedCards += 1;
+    // ... puis on rafraichi l'HUD !
+    this.refreshHUD();
 	}
 
 	/**
