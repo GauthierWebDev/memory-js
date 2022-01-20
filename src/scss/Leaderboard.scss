@@ -1,0 +1,82 @@
+@import './vars';
+
+.Leaderboard {
+  margin-right: auto;
+  margin-left: auto;
+  width: 36rem;
+  transition: .3s $cubic opacity;
+
+  // On masque le tableau des scores
+  &--hidden {
+    display: none;
+  }
+
+  h2 {
+    margin-bottom: 1rem;
+  }
+
+  .Scores {
+    margin-top: 1rem;
+
+    &--hidden {
+      display: none;
+    }
+  }
+
+  .ifNoScores--hidden {
+    display: none;
+  }
+
+  .Score {
+    display: flex;
+    align-items: stretch;
+    padding: .5rem .25rem;
+
+    // Pour tous les éléments enfants directs
+    // à la classe .Score...
+    & > * {
+      // ... on applique une marge sur l'axe horizontal.
+      margin: 0 .25rem;
+    }
+
+    &-Rank {
+      width: 4rem;
+    }
+
+    &-Username {
+      flex: 1;
+    }
+
+    &-Duration {
+      width: 8rem;
+      text-align: right;
+    }
+
+    &-Date {
+      width: 6rem;
+      text-align: right;
+    }
+
+    // Pour chaque .Score qui suit directement un
+    // autre élément .Score...
+    & + .Score {
+      // on applique une petite bordure en haut !
+      border-top: 1px solid rgba($hidden, .25);
+    }
+
+    // On retrouve ici le premier <li> de la liste des
+    // scores qui nous sert d'entête.
+    &Header {
+      // Du coup, tout en majuscules et on applique un
+      // peu de gras sur la font !
+      text-transform: uppercase;
+      font-weight: 600;
+
+      // Ah, et on oublie pas de marquer sur le premier score
+      // affiché une bordure plus opaque et plus épaisse !
+      + .Score {
+        border-top: 2px solid rgba($hidden, .5);
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 <section class="Leaderboard" id="Leaderboard">
   <div class="Paper">
     <h2>Tableau des scores</h2>
-    <ul class="Scores" id="Scores">
+    <ul class="Scores <%= (scores.length === 0) ? "Scores--hidden" : "" %></ul>" id="Scores">
       <li class="Score ScoreHeader">
         <span class="Score-Rank">Rang</span>
         <span class="Score-Username">Utilisateur</span>
@@ -12,7 +12,7 @@
         <%- include('./score', { score, rank: index + 1 }); %>
       <% }) %>
     </ul>
-    <p class="ifNoScores">
+    <p class="ifNoScores <%= (scores.length === 0) ? '' : 'ifNoScores--hidden' %>">
       Aucun score n'a été enregistré pour le moment...
       <br>
       Alors pourquoi ne pas décrocher le world record tant qu'il est encore temps ?

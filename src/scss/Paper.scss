@@ -1,0 +1,9 @@
+@import './vars';
+
+.Paper {
+  position: relative;
+  padding: 1.25rem 1rem;
+  background: rgba($hidden, .25);
+  border-radius: .75rem;
+  overflow: hidden;
+}
