@@ -66,7 +66,8 @@ class MemoryGameEngine {
 	 * pour laisser apparaître le tableau des scores.
 	 */
 	displayLeaderboardHandler() {
-		// todo
+		// On fait disparaître doucement la fenêtre modale
+		this.HUD.vanishResults();
 	}
 
 	/**
