@@ -11,7 +11,33 @@ class MemoryHUD {
 
     // Cartes retournées
     this.flippedCardsSpan = document.querySelector(':scope #moves span');
+
+    // Temps écoulé
+    this.elapsedTimeSpan = document.querySelector(':scope #elapsedTime span');
   }
+
+	/**
+	 * Retourne le temps écoulé sous le format "M:SS".
+   * 
+	 * Exemple : 4:06
+	 *
+	 * @returns {string}
+	 */
+	formatElapsedTime(elapsedTime) {
+		const seconds = (elapsedTime % 60 < 10) ? `0${elapsedTime % 60}` : elapsedTime % 60;
+		const minutes = Math.floor(elapsedTime / 60);
+
+		return `${minutes}:${seconds}`;
+	}
+
+	/**
+	 * Actualise les données relatives au temps écoulé sur le HUD.
+	 *
+	 * @param elapsedTime
+	 */
+	setElapsedTime(elapsedTime) {
+		this.elapsedTimeSpan.innerHTML = this.formatElapsedTime(elapsedTime);
+	}
 
 	/**
 	 * Actualise le nombre de cartes retournées au court de la partie en cours.

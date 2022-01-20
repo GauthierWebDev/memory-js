@@ -1,6 +1,7 @@
 class MemoryClock {
 	constructor() {
 		this.id = null;
+    this.elapsedTime = 0;
 	}
 
 	/**

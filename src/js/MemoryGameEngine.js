@@ -23,6 +23,7 @@ class MemoryGameEngine {
 	 */
   refreshHUD() {
 		this.HUD.setFlippedCards(this.flippedCards);
+		this.HUD.setElapsedTime(this.clock.elapsedTime);
   }
 
 	/**
@@ -110,6 +111,17 @@ class MemoryGameEngine {
 			}, this.msBetweenFlip);
 		}
   }
+
+	/**
+	 * Incrémente le temps écoulé de 1 à chaque appel
+	 * puis rafraichi l'interface du jeu.
+	 */
+	incrementElapsedTime() {
+		// On rajoute une seconde au timer...
+		this.clock.elapsedTime += 1;
+		// ... puis on actualise l'interface du jeu.
+		this.refreshHUD();
+	}
   
   /**
 	 * Gestion du retournement des cartes vers face visible.
@@ -119,6 +131,12 @@ class MemoryGameEngine {
     // Si le joueur ne peut pas retourner de cartes pour le moment,
     // on sort de la méthode `flipCard`.
     if (!this.canFlip) return;
+
+    // Si l'horloge de jeu n'a pas encore démarré,
+    // on la démarre de ce pas !
+    // Elle n'est pas active avant de cliquer pour
+    // la première fois sur une carte.
+    if (null === this.clock.id) this.clock.start(() => this.incrementElapsedTime());
 
 		// On indique la carte cliquée comme retournée avec une classe CSS (face visible)...
 		currentCard.DOMElement.classList.add('Card--visible');
