@@ -5,7 +5,7 @@ const MemoryHUD = require('./MemoryHUD');
 // à la partie en cours.
 class MemoryGameEngine {
   constructor(fruits) {
-    this.fruitsPerGame = 14;
+    this.fruitsPerGame = 2;
 		this.msBetweenFlip = 1000;
 		this.maxSecondsPerGame = 120;
 		this.fruits = fruits.shuffle().slice(0, this.fruitsPerGame);
@@ -21,6 +21,18 @@ class MemoryGameEngine {
   refreshHUD() {
 		this.HUD.setFlippedCards(this.flippedCards);
   }
+
+	/**
+	 * Actionne la fin de partie si toutes les paires ont été trouvées.
+	 */
+	checkFoundPairs() {
+		// Si le nombre de paires trouvées (fruits trouvés)
+		// est égal au nombre de fruits dans le jeu,
+		// on enclenche la fin de la partie.
+		if (this.fruits.filter((fruit) => fruit.found).length === this.fruitsPerGame) {
+			alert('Fin de la partie !');
+		}
+	}
   
   /**
 	 * Gestion des cartes actuellement retournées (hors cartes trouvées).
@@ -63,6 +75,10 @@ class MemoryGameEngine {
 			// Petit rappel : la ligne ci-dessous prend effet avant que la classe CSS soit supprimée dans
 			// le `setTimeout`, pas besoin d'attendre 300ms pour retourner de nouvelles cartes !
 			this.canFlip = true;
+
+			// On vérifie si toutes les paires ont été trouvées pour éventuellement
+			// déclencher la fin de la partie.
+			this.checkFoundPairs();
 		}
 		else {
 			// ... sinon, on retourne simplement les deux cartes
