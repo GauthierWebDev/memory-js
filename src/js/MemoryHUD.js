@@ -8,4 +8,4 @@ class MemoryHUD {
   }
 }
 
-exports.default = MemoryHUD;
+module.exports = MemoryHUD;

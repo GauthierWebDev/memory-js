@@ -23,9 +23,12 @@ class MemoryGameEngine {
       // le fruit qui lui a été donné...
 			const newCard = new MemoryCard(fruit);
 
+      // ... puis on le configure pour qu'il corresponde au fruit choisi
+      // tout en prenant soin de l'insérer dans la grille de DOM...
+			newCard.prepareCardDOM(this.HUD.cardTemplate, this.HUD.boardContainer);
+
       // ... et ici, on stocke notre objet dans la liste
       // des cartes de la partie en cours.
-      // Par contre, la carte n'apparaît pas dans le DOM !
 			this.cards.push(newCard);
 		});
 	}
