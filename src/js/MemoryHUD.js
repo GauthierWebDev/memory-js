@@ -2,6 +2,10 @@ class MemoryHUD {
   constructor() {
     // Templates
     this.cardTemplate = document.getElementById('Card');
+		this.gameResultsTemplate = document.getElementById('GameResults');
+
+		// Résultats de fin de partie
+		this.gameResultsContainer = null;
 
     // Grille de jeu
     this.boardContainer = document.getElementById('Board');
@@ -61,6 +65,20 @@ class MemoryHUD {
 	setFlippedCards(flippedCards) {
 		this.flippedCardsSpan.innerHTML = flippedCards;
 	}
+
+  displayResults() {
+		// On clone le template de l'écran de fin de partie...
+		this.gameResultsContainer = document.importNode(this.gameResultsTemplate.content, true).querySelector('section');
+
+		// Puis au bout d'une seconde...
+		setTimeout(() => {
+			// ... on rétabli l'opacité de la fenêtre modale grâce à la classe CSS `GameResults--visible`.
+			this.gameResultsContainer.classList.add('GameResults--visible');
+		}, 1000);
+
+    // On insert l'écran des résultats dans le DOM.
+		document.body.append(this.gameResultsContainer);
+  }
 
 	/**
 	 * Masque le tableau des scores.

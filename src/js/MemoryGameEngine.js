@@ -38,6 +38,8 @@ class MemoryGameEngine {
     this.clock.end();
 		// On bloque la possibilité de retourner de nouvelles cartes.
 		this.canFlip = false;
+		// On affiche l'écran de fin de jeu.
+		this.HUD.displayResults();
 	}
 
 	/**
