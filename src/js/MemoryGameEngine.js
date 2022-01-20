@@ -23,7 +23,7 @@ class MemoryGameEngine {
 	 */
   refreshHUD() {
 		this.HUD.setFlippedCards(this.flippedCards);
-		this.HUD.setElapsedTime(this.clock.elapsedTime);
+		this.HUD.setElapsedTime(this.clock.elapsedTime, this.maxSecondsPerGame);
   }
 
 	/**

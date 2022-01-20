@@ -14,7 +14,20 @@ class MemoryHUD {
 
     // Temps écoulé
     this.elapsedTimeSpan = document.querySelector(':scope #elapsedTime span');
+		this.elapsedTimeProgressBar = document.querySelector(':scope #elapsedTime .ProgressBar');
   }
+
+	/**
+	 * Retourne un pourcentage (sous forme de chaîne de caractères)
+   * correspondant au temps écoulé.
+	 * 
+   * Exemple : 46%
+	 *
+	 * @returns {string}
+	 */
+	formatElapsedTimeIntoPercent(elapsedTime, maxSecondsPerGame) {
+		return `${(elapsedTime / maxSecondsPerGame) * 100}%`;
+	}
 
 	/**
 	 * Retourne le temps écoulé sous le format "M:SS".
@@ -35,8 +48,9 @@ class MemoryHUD {
 	 *
 	 * @param elapsedTime
 	 */
-	setElapsedTime(elapsedTime) {
+	setElapsedTime(elapsedTime, maxSecondsPerGame) {
 		this.elapsedTimeSpan.innerHTML = this.formatElapsedTime(elapsedTime);
+    this.elapsedTimeProgressBar.style.setProperty('--width', this.formatElapsedTimeIntoPercent(elapsedTime, maxSecondsPerGame));
 	}
 
 	/**
