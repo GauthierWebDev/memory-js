@@ -1,0 +1,17 @@
+@import './vars';
+
+.Button {
+  padding: .75rem 1.25rem;
+  border: none;
+  border-radius: 9999rem;
+  background: $hidden;
+  color: #fffdd8;
+  letter-spacing: .05rem;
+  transition: .3s $cubic background;
+  font-size: 1rem;
+  cursor: pointer;
+
+  &:hover {
+    background: $visible;
+  }
+}

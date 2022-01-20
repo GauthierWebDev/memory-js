@@ -1,0 +1,56 @@
+@import './vars';
+
+// Tous les éléments...
+* {
+  // ... auront la police d'écriture "Trueno Round" (fallback: sans-serif)
+  font-family: 'Trueno Round', sans-serif;
+  // ... et auront comme couleur d'écriture la couleur définie dans la
+  // variable $hidden de notre fichier "_vars.scss".
+  color: $hidden;
+}
+
+// On vient centrer nos éléments sur la fenêtre à partir du body.
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // On force la hauteur minimale du body à 100vh, soit 100% de la fenêtre.
+  // Si le contenu du body dépasse les 100vh, il y aura du contenu à faire défiler.
+  min-height: 100vh;
+}
+
+h1 {
+  // On veut que le texte contenu dans les balises <h1>
+  // soit transformé en minuscules.
+  text-transform: lowercase;
+
+  // La première lettre des <h1>
+  &:first-letter {
+    color: $visible;
+    font-size: 2.5rem;
+  }
+}
+
+a {
+  // On stylise également nos liens, on réduisant par défaut l'opacité...
+  opacity: .75;
+  transition: .3s $cubic opacity;
+
+  &:hover {
+    // ... qu'on remettra à 100% au survol !
+    opacity: 1;
+  }
+}
+
+p + p {
+  // Pour chaque <p> qui suit un autre <p>,
+  // on marque une marge en haut.
+  margin-top: 1rem;
+}
+
+.container {
+  width: 55rem;
+  margin-right: auto;
+  margin-left: auto;
+}
