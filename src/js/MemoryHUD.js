@@ -67,6 +67,15 @@ class MemoryHUD {
 	}
 
 	/**
+	 * Supprime du DOM le paragraphe et le formulaire de soumission de score
+	 * de la fenêtre modale des résultats.
+	 */
+	hideResultsForm() {
+		this.gameResultsContainer.querySelector('p.onlyIfWon').outerHTML = '';
+		this.gameResultsContainer.querySelector('form').outerHTML = '';
+	}
+
+	/**
 	 * Affiche et paramètre la fenêtre modale des résultats de fin de partie.
 	 * @param flippedCards
 	 * @param foundPairs
@@ -87,6 +96,13 @@ class MemoryHUD {
 		this.gameResultsContainer.querySelector('#GameResultsFound').innerHTML = foundPairs;
 		this.gameResultsContainer.querySelector('#GameResultsPairs').innerHTML = fruitsPerGame;
 		this.gameResultsContainer.querySelector('#GameResultsElapsedTime').innerHTML = this.formatElapsedTime(elapsedTime);
+
+		// Si une ou plusieurs paires n'ont pas été trouvées durant la partie...
+		if (foundPairs !== fruitsPerGame) {
+			// ... alors on supprime le paragraphe proposant à l'utilisateur
+			// d'envoyer son score, ainsi que le formulaire.
+			this.hideResultsForm();
+		}
 
 		// Puis au bout d'une seconde...
 		setTimeout(() => {
