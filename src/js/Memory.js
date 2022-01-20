@@ -1,18 +1,20 @@
 const MemoryFruit = require('./MemoryFruit');
+const MemoryGameEngine = require('./MemoryGameEngine');
 
 const fruitsData = require('../data/fruits');
 
 class Memory {
 	constructor() {
 		this.fruits = [];
+    this.gameEngine = null;
 	}
 
 	/**
 	 * Gestion du système de nouvelle partie.
 	 */
 	newGame() {
-    alert('newGame');
-    console.log(this.fruits);
+		// On vient faire une nouvelle instanciation de notre class MemoryGameData.
+		this.gameEngine = new MemoryGameEngine(this.fruits);
 	}
 
 	/**
