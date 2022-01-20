@@ -1,3 +1,4 @@
+const { default: axios } = require('axios');
 const MemoryCard = require('./MemoryCard');
 const MemoryClock = require('./MemoryClock');
 const MemoryHUD = require('./MemoryHUD');
@@ -46,7 +47,14 @@ class MemoryGameEngine {
 	 * @param username
 	 */
 	submitScore(username) {
-		console.log(username);
+		axios.post('/scoreSubmit', {
+			username,
+			elapsedTime: this.clock.elapsedTime,
+			finishedAt: this.finishedAt,
+		})
+			.then(({ data }) => {
+				console.log(data);
+			});
 	}
 
 	/**

@@ -24,6 +24,36 @@ class ScoreService {
 			logger.error(error);
 		}
 	}
+
+	static async retrieveScores(limit = 10) {
+		try {
+			// On souhaite récupérer les noms d'utilisateur, le temps écoulé
+			// ainsi que les dates de fin de partie sur un échantillon maximal
+			// de 10 scores enregistrés, en commençant par les scores ayant
+			// un temps écoulé le plus court.
+			//
+			// Requête SQL :
+			// 	SELECT `username`, `elapsedTime`, `finishedAt`
+			// 	FROM `scores`
+			// 	ORDER BY `elapsedTime`
+			// 	LIMIT 10;
+			const scores = await Score.findAll({
+				attributes: ['username', 'elapsedTime', 'finishedAt'],
+				limit,
+				order: [
+					[ 'elapsedTime', 'ASC' ],
+				],
+			});
+
+			return scores;
+		}
+		catch (error) {
+			console.error(chalk.red('[ERROR] Impossible de récupérer un échantillon de scores depuis la base de données.'));
+			logger.error(error);
+
+			return [];
+		}
+	}
 }
 
 module.exports = ScoreService;
