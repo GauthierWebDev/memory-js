@@ -12,6 +12,7 @@ class MemoryGameEngine {
     this.cards = [];
 		this.HUD = new MemoryHUD();
     this.flippedCards = 0;
+    this.canFlip = true;
   }
 
 	/**
@@ -22,10 +23,24 @@ class MemoryGameEngine {
   }
   
   /**
+	 * Gestion des cartes actuellement retournées (hors cartes trouvées).
+   * @param {[]}
+   */
+	checkVisibleCards(cards) {
+		// On modifie la valeur de la propriété "canFlip" à false pour
+		// pouvoir interdire le retournement d'autres cartes.
+		this.canFlip = false;
+  }
+  
+  /**
 	 * Gestion du retournement des cartes vers face visible.
 	 * @param {MemoryCard}
 	 */
 	flipCard(currentCard) {
+    // Si le joueur ne peut pas retourner de cartes pour le moment,
+    // on sort de la méthode `flipCard`.
+    if (!this.canFlip) return;
+
 		// On indique la carte cliquée comme retournée avec une classe CSS (face visible)...
 		currentCard.DOMElement.classList.add('Card--visible');
 		// ... on donne à notre objet le status retourné...
@@ -35,8 +50,19 @@ class MemoryGameEngine {
     // ... puis on rafraichi l'HUD !
     this.refreshHUD();
 
+		// On récupère toutes les cartes faces visibles (hors cartes trouvées).
+		// Puisqu'on bloque le nombre de cartes retournées à deux lors de la
+		// vérification des cartes (this.checkVisibleCards()),
+		// `visibleCards` aura soit une carte, soit deux cartes, mais jamais plus !
     const visibleCards = this.cards.filter((card) => card.flipped);
-    console.log(visibleCards.length);
+
+    // Si exactement deux cartes sont actuellement retournées...
+		if (2 === visibleCards.length) {
+			// ... alors on vérifie qu'elles sont identiques...
+			this.checkVisibleCards(visibleCards);
+			// ... puis on retire le status "retourné" sur ces deux cartes.
+			visibleCards.forEach((card) => card.flipped = false);
+		}
 	}
 
 	/**
