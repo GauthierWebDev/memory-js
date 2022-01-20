@@ -1,0 +1,13 @@
+@import './vars';
+
+.Footer {
+  margin: 3rem 0;
+  padding: 1.25rem 1rem;
+  background: rgba($hidden, .25);
+  border-radius: .75rem;
+
+  p {
+    font-size: .75rem;
+    line-height: 1.25rem;
+  }
+}
