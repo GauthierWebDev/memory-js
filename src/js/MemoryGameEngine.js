@@ -8,7 +8,7 @@ class MemoryGameEngine {
     this.fruitsPerGame = 14;
 		this.msBetweenFlip = 1000;
 		this.maxSecondsPerGame = 120;
-		this.fruits = fruits;
+		this.fruits = fruits.slice(0, this.fruitsPerGame);
     this.cards = [];
 		this.HUD = new MemoryHUD();
   }
