@@ -1,0 +1,109 @@
+@import './vars';
+
+/*
+Ici, on souhaite faire en sorte que .GameResults
+prenne toute la fenêtre et ait en arrière plan un
+"voile blanc" pour marquer du contrast entre
+la fenêtre modale qu'il contiendra et le reste de
+l'application.
+ */
+
+.GameResults {
+  // On commence d'abord par rendre notre élément "fixe".
+  position: fixed;
+  // On le positionne sans marge par rapport
+  // au coin en haut à gauche.
+  top: 0;
+  left: 0;
+  // On va passer par un `display: flex;` pour centrer
+  // le contenu de .GameResults à l'aide des propriétés
+  // `align-items` et `justify-content`.
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // On n'oublie pas de fixer les dimensions !
+  height: 100vh;
+  width: 100vw;
+  // On souhaite que toute cette section s'affiche par dessus
+  // les autres éléments de l'application, on va donc
+  // définir un `z-index` pour faire remonter la section au dessus
+  // des autres.
+  z-index: 1;
+  // On applique le fameux voile blanc, opaque à 50%.
+  background: rgba(#fff, .5);
+  // Pour pouvoir ensuite faire apparaître doucement la section,
+  // on va définir l'opacité par défaut de toute la section et
+  // son contenu à 0.
+  opacity: 0;
+  // On bloque les interactions du curseur sur la section.
+  pointer-events: none;
+  // Puis pour fluidifier l'affichage (dans le sens, pas instantané),
+  // on va faire en sorte que le changement de l'opacité
+  // prenne une seconde entre chaque changement.
+  transition: 1s $cubic opacity;
+
+  // Dès que notre section est visible (.GameResults--visible)...
+  &--visible {
+    // ... on défini l'opacité à 100%...
+    opacity: 1;
+    // ... et on restaure les interactions du curseur par défaut.
+    pointer-events: initial;
+  }
+
+  .Paper {
+    // Contrairement au style qu'on a pu mettre en place
+    // dans son propre fichier SCSS, on va vouloir personnalisé
+    // uniquement les éléments .Paper qui se trouvent dans notre
+    // section, en mettant une couleur fixe et sans aucune transparence,
+    // ainsi que changer sa largeur.
+    background: #cbd1d5;
+    width: 32rem;
+  }
+
+  p {
+    margin: 1rem 0;
+  }
+
+  &-Form {
+    // Comme pour la section, on va vouloir centrer le contenu
+    // du formulaire, mais cette fois-ci, qu'en horizontal.
+    // Même s'il y a plusieurs solutions, on va conserver la même
+    // logique et réutiliser flex !
+    // La différence va se jouer...
+    display: flex;
+    // Ici ! Pour que ce soit plus agréable à l'oeil, on va demander
+    // au navigateur de bien vouloir étirer sur la hauteur les éléments
+    // pour qu'ils fassent la même hauteur.
+    align-items: stretch;
+    // Le label de l'input sera en absolute, on place donc le
+    // formulaire en position relative.
+    position: relative;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+    border-bottom: solid 1px rgba($hidden, .25);
+    transition: .3s $cubic opacity;
+
+    .Label {
+      position: absolute;
+      top: -1.25rem;
+      left: 1rem;
+      font-size: .75rem;
+    }
+
+    // On modifie les arrondis sur le bouton
+    // pour avoir des arrondis uniquement sur
+    // les coins de droite.
+    .Button {
+      border-radius: 0 9999rem 9999rem 0;
+    }
+
+    // Lorsque l'attribut "locked" sur le formulaire
+    // vaut "true"
+    &[data-locked="true"] {
+      opacity: .5;
+      pointer-events: none;
+      cursor: wait;
+    }
+  }
+}
