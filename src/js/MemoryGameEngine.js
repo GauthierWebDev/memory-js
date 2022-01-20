@@ -69,10 +69,10 @@ class MemoryGameEngine {
 
 				// ... et enfin (promis c'est le dernier !) après 300ms...
 				setTimeout(() => {
-					// ... on démarre une nouvelle partie...
+					// ... on supprime du DOM la fenêtre modale...
+					this.HUD.hideResults();
+					// ... et on démarre une nouvelle partie.
 					this.newGameCallback();
-					// ... et on supprime du DOM la fenêtre modale.
-					this.HUD.hideResultsForm();
 				}, 300);
 			}, 250);
 		}, 750);
@@ -254,6 +254,16 @@ class MemoryGameEngine {
 			// ... puis on retire le status "retourné" sur ces deux cartes.
 			visibleCards.forEach((card) => card.flipped = false);
 		}
+	}
+
+	/**
+	 * Supprime les cartes du DOM et du système de l'application.
+	 */
+	removeCards() {
+		// On supprime les cartes de la grille de jeu...
+		this.HUD.removeCards();
+		// ... puis on vide notre propriété `this.cards`.
+		this.cards = [];
 	}
 
 	/**

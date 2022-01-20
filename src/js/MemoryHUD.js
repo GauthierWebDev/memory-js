@@ -95,6 +95,10 @@ class MemoryHUD {
 		});
 	}
 
+  hideResults() {
+    this.gameResultsContainer.outerHTML = '';
+  }
+
 	/**
 	 * Affiche et paramètre la fenêtre modale des résultats de fin de partie.
 	 * @param flippedCards
@@ -182,6 +186,13 @@ class MemoryHUD {
 	 */
    vanishLeaderboard() {
 		this.leaderboardContainer.classList.add('Leaderboard--vanish');
+	}
+
+	/**
+	 * Supprime le contenu de la grille de jeu.
+	 */
+	removeCards() {
+		this.boardContainer.innerHTML = '';
 	}
 
 	/**

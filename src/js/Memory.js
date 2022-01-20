@@ -13,6 +13,12 @@ class Memory {
 	 * Gestion du système de nouvelle partie.
 	 */
 	newGame() {
+		// Si une horloge interne existe déjà...
+		if (this.gameEngine) {
+			// ... on met un terme à l'horloge interne du jeu.
+			this.gameEngine.clock.end();
+		}
+
 		// On vient faire une nouvelle instanciation de notre class MemoryGameData...
 		this.gameEngine = new MemoryGameEngine(this.fruits, () => this.newGame());
 
@@ -23,6 +29,9 @@ class Memory {
 		this.gameEngine.HUD.vanishBoard();
 
     setTimeout(() => {
+			// ... on réinitialise la grille de jeu.
+			this.gameEngine.removeCards();
+			
       // On crée de nouvelles cartes...
       this.gameEngine.createCards();
 
