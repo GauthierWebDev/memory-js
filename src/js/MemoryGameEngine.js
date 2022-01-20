@@ -48,7 +48,8 @@ class MemoryGameEngine {
 	 * fenêtre modale de fin de partie et initialise une nouvelle partie.
 	 */
 	newGameHandler() {
-		// todo
+		// On fait disparaître doucement la fenêtre modale
+		this.HUD.vanishResults();
 	}
 
 	/**

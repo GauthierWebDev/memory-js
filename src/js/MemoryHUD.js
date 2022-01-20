@@ -143,6 +143,13 @@ class MemoryHUD {
   }
 
 	/**
+	 * Fait disparaître la fenêtre modale de fin de partie.
+	 */
+	vanishResults() {
+		this.gameResultsContainer.classList.remove('GameResults--visible');
+	}
+
+	/**
 	 * Masque le tableau des scores.
 	 */
 	hideLeaderboard() {
