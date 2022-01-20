@@ -13,6 +13,7 @@ class MemoryGameEngine {
 		this.HUD = new MemoryHUD();
     this.flippedCards = 0;
     this.canFlip = true;
+    this.finishedAt = null;
   }
 
 	/**
@@ -23,6 +24,16 @@ class MemoryGameEngine {
   }
 
 	/**
+	 * Gestion de la fin de partie.
+	 */
+	gameFinished() {
+		// On stocke la date et heure de la fin de la partie.
+		this.finishedAt = new Date();
+		// On floute l'arrière plan
+		this.HUD.blurBoard();
+	}
+
+	/**
 	 * Actionne la fin de partie si toutes les paires ont été trouvées.
 	 */
 	checkFoundPairs() {
@@ -30,7 +41,7 @@ class MemoryGameEngine {
 		// est égal au nombre de fruits dans le jeu,
 		// on enclenche la fin de la partie.
 		if (this.fruits.filter((fruit) => fruit.found).length === this.fruitsPerGame) {
-			alert('Fin de la partie !');
+			this.gameFinished();
 		}
 	}
   

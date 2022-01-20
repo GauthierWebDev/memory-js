@@ -38,6 +38,13 @@ class MemoryHUD {
 	}
 
 	/**
+	 * Floute la grille de jeu.
+	 */
+	blurBoard() {
+		this.boardContainer.classList.add('Board--blurred');
+	}
+
+	/**
 	 * Applique une classe CSS responsable d'une opacité à 0 sur
 	 * la grille de jeu.
 	 */
