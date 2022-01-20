@@ -1,4 +1,5 @@
 const MemoryCard = require('./MemoryCard');
+const MemoryClock = require('./MemoryClock');
 const MemoryHUD = require('./MemoryHUD');
 
 // MemoryGameEngine est la class gérant tout ce qui est relatif
@@ -14,6 +15,7 @@ class MemoryGameEngine {
     this.flippedCards = 0;
     this.canFlip = true;
     this.finishedAt = null;
+    this.clock = new MemoryClock();
   }
 
 	/**
