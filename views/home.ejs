@@ -1,3 +1,44 @@
+<%
+const scores = [
+  {
+    username: 'Toto',
+    elapsedTime: '0:52',
+    finishedAt: '20/01/2022',
+  },
+  {
+    username: 'Tutu',
+    elapsedTime: '1:13',
+    finishedAt: '20/01/2022',
+  },
+  {
+    username: 'Tata',
+    elapsedTime: '1:29',
+    finishedAt: '20/01/2022',
+  },
+];
+%>
+
 <%- include('./components/header'); %>
+
+<ul id="Board" class="Board"></ul>
+
+<%- include('./components/leaderboard', { scores }); %>
+
+<div class="GameInformations">
+  <div class="Paper" id="elapsedTime">
+    <p>
+      Temps écoulé
+      <span>0:00</span>
+    </p>
+    <div class="ProgressBar"></div>
+  </div>
+
+  <div class="Paper" id="moves">
+    <p>
+      Cartes retournées
+      <span>0</span>
+    </p>
+  </div>
+</div>
 
 <%- include('./components/footer'); %>

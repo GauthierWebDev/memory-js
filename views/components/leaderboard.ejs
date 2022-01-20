@@ -1,0 +1,21 @@
+<section class="Leaderboard" id="Leaderboard">
+  <div class="Paper">
+    <h2>Tableau des scores</h2>
+    <ul class="Scores" id="Scores">
+      <li class="Score ScoreHeader">
+        <span class="Score-Rank">Rang</span>
+        <span class="Score-Username">Utilisateur</span>
+        <span class="Score-Duration">Temps écoulé</span>
+        <span class="Score-Date">Date</span>
+      </li>
+      <% scores.map((score, index) => { %>
+        <%- include('./score', { score, rank: index + 1 }); %>
+      <% }) %>
+    </ul>
+    <p class="ifNoScores">
+      Aucun score n'a été enregistré pour le moment...
+      <br>
+      Alors pourquoi ne pas décrocher le world record tant qu'il est encore temps ?
+    </p>
+  </div>
+</section>

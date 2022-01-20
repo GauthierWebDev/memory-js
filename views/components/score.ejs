@@ -1,0 +1,22 @@
+<li class="Score">
+  <span class="Score-Rank">
+    <% if (score) { %>
+      <%= rank; %>
+    <% } %>
+  </span>
+  <span class="Score-Username">
+    <% if (score) { %>
+      <%= score.username; %>
+    <% } %>
+  </span>
+  <span class="Score-Duration">
+    <% if (score) { %>
+      <%= score.elapsedTime; %>
+    <% } %>
+  </span>
+  <span class="Score-Date">
+    <% if (score) { %>
+      <%= score.finishedAt; %>
+    <% } %>
+  </span>
+</li>
