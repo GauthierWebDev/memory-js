@@ -55,6 +55,18 @@ class MemoryGameEngine {
 		setTimeout(() => {
 			// ... on force l'état "caché" sur toutes les cartes de l'ancienne partie.
 			this.HUD.closeAllCards();
+
+			// ... puis dans 250ms...
+			setTimeout(() => {
+				// ... on enlève le flou sur la grille de jeu...
+				this.HUD.removeBlurBoard();
+
+				// ... et enfin (promis c'est le dernier !) après 300ms...
+				setTimeout(() => {
+					// ... et on supprime du DOM la fenêtre modale.
+					this.HUD.hideResultsForm();
+				}, 300);
+			}, 250);
 		}, 750);
 	}
 
