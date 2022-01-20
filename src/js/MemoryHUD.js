@@ -76,6 +76,26 @@ class MemoryHUD {
 	}
 
 	/**
+	 * Anime les cartes de la précédente partie au travers des classes CSS
+	 * dédiées aux états des cartes.
+	 */
+	closeAllCards() {
+		// On récupère toutes les cartes sur la grille de jeu...
+		this.boardContainer.querySelectorAll('.Card').forEach((card) => {
+			// ... et à chacune, on rajoute la classe CSS `Card--visible`.
+			card.classList.add('Card--visible');
+
+			// 300ms après le rajout de la classe CSS `Card--visible`...
+			setTimeout(() => {
+				// ... on supprime les classes CSS `Card--found` et `Card--visible`...
+				card.classList.remove('Card--found', 'Card--visible');
+				// ... puis on rajoute la classe CSS `Card--hidden`.
+				card.classList.add('Card--hidden');
+			}, 300);
+		});
+	}
+
+	/**
 	 * Affiche et paramètre la fenêtre modale des résultats de fin de partie.
 	 * @param flippedCards
 	 * @param foundPairs

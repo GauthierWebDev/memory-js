@@ -50,6 +50,12 @@ class MemoryGameEngine {
 	newGameHandler() {
 		// On fait disparaître doucement la fenêtre modale
 		this.HUD.vanishResults();
+
+		// Dans 750ms...
+		setTimeout(() => {
+			// ... on force l'état "caché" sur toutes les cartes de l'ancienne partie.
+			this.HUD.closeAllCards();
+		}, 750);
 	}
 
 	/**
