@@ -1,4 +1,5 @@
 const Controller = require('./Controller');
+const ScoreService = require('../services/ScoreService');
 
 class ScoreController extends Controller {
 	constructor(req, res) {
@@ -6,7 +7,11 @@ class ScoreController extends Controller {
 	}
 
 	async scoreSubmit() {
+		const { username, elapsedTime, finishedAt } = this.req.body;
+		await ScoreService.insertScore(username, elapsedTime, finishedAt);
+		const scores = await ScoreService.retrieveScores();
 
+		this.res.json({ scores });
 	}
 }
 
