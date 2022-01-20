@@ -6,9 +6,15 @@
   width: 36rem;
   transition: .3s $cubic opacity;
 
-  // On masque le tableau des scores
+  // On masque le tableau des scores.
   &--hidden {
     display: none;
+  }
+
+  // On baisse l'opacité du tableau des scores,
+  // sans supprimer l'espace qu'il occupe sur la page.
+  &--vanish {
+    opacity: 0;
   }
 
   h2 {
