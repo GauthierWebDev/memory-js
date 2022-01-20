@@ -66,9 +66,27 @@ class MemoryHUD {
 		this.flippedCardsSpan.innerHTML = flippedCards;
 	}
 
-  displayResults() {
+	/**
+	 * Affiche et paramètre la fenêtre modale des résultats de fin de partie.
+	 * @param flippedCards
+	 * @param foundPairs
+	 * @param fruitsPerGame
+	 * @param elapsedTime
+	 */
+  displayResults(
+		flippedCards,
+		foundPairs,
+		fruitsPerGame,
+		elapsedTime
+  ) {
 		// On clone le template de l'écran de fin de partie...
 		this.gameResultsContainer = document.importNode(this.gameResultsTemplate.content, true).querySelector('section');
+
+		// ... puis on modifie les données affichée par les données actuelles.
+		this.gameResultsContainer.querySelector('#GameResultsMoves').innerHTML = flippedCards;
+		this.gameResultsContainer.querySelector('#GameResultsFound').innerHTML = foundPairs;
+		this.gameResultsContainer.querySelector('#GameResultsPairs').innerHTML = fruitsPerGame;
+		this.gameResultsContainer.querySelector('#GameResultsElapsedTime').innerHTML = this.formatElapsedTime(elapsedTime);
 
 		// Puis au bout d'une seconde...
 		setTimeout(() => {

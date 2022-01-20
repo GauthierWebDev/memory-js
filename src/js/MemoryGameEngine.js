@@ -39,7 +39,12 @@ class MemoryGameEngine {
 		// On bloque la possibilité de retourner de nouvelles cartes.
 		this.canFlip = false;
 		// On affiche l'écran de fin de jeu.
-		this.HUD.displayResults();
+		this.HUD.displayResults(
+			this.flippedCards,
+			this.fruits.filter((fruit) => fruit.found).length,
+			this.fruitsPerGame,
+			this.clock.elapsedTime
+		);
 	}
 
 	/**
