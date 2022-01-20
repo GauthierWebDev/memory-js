@@ -1,9 +1,15 @@
 class MemoryCard {
-	constructor(fruit) {
+	constructor(fruit, flipCard) {
 		this.DOMElement = null;
 		this.found = false;
 		this.flipped = false;
 		this.fruit = fruit;
+		// Comme depuis un objet `MemoryCard` on ne
+		// peut pas directement appeler la méthode
+		// `flipCard` de la class `MemoryGameEngine`,
+		// on stocke un callback qu'on attachera lorsque
+		// nous définirons le DOM de la carte.
+		this.flipCard = flipCard;
 	}
 
 	prepareCardDOM(template, board) {
@@ -13,6 +19,10 @@ class MemoryCard {
     // ... on lui ajoute une variable CSS pour afficher
     // le bon fruit parmi toute l'image...
 		this.DOMElement.style.setProperty('--translateY', `${this.fruit.translateY}px`);
+
+		// ... on rajoute un eventListener pour pouvoir
+		// retourner la carte au clic...
+		this.DOMElement.addEventListener('click', () => this.flipCard(this));
     
     // ... et enfin, on l'ajoute dans le DOM !
 		board.append(this.DOMElement);

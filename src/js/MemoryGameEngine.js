@@ -12,6 +12,17 @@ class MemoryGameEngine {
     this.cards = [];
 		this.HUD = new MemoryHUD();
   }
+  
+  /**
+	 * Gestion du retournement des cartes vers face visible.
+	 * @param {MemoryCard}
+	 */
+	flipCard(currentCard) {
+		// On indique la carte cliquée comme retournée avec une classe CSS (face visible)...
+		currentCard.DOMElement.classList.add('Card--visible');
+		// ... on donne à notre objet le status retourné.
+		currentCard.flipped = true;
+	}
 
 	/**
 	 * Gestion de la création des cartes pour la nouvelle grille de jeu.
@@ -26,8 +37,8 @@ class MemoryGameEngine {
 		// aux mêmes positions sur la grille de jeu.
 		[...this.fruits, ...this.fruits].shuffle().forEach(fruit => {
       // Ici, on gère l'instanciation d'une nouvelle carte pour
-      // le fruit qui lui a été donné...
-			const newCard = new MemoryCard(fruit);
+      // le fruit qui lui a été donné et on ajoute un eventListener...
+			const newCard = new MemoryCard(fruit, (card) => this.flipCard(card));
 
       // ... puis on le configure pour qu'il corresponde au fruit choisi
       // tout en prenant soin de l'insérer dans la grille de DOM...
