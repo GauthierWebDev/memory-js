@@ -34,6 +34,9 @@ class MemoryGameEngine {
     this.flippedCards += 1;
     // ... puis on rafraichi l'HUD !
     this.refreshHUD();
+
+    const visibleCards = this.cards.filter((card) => card.flipped);
+    console.log(visibleCards.length);
 	}
 
 	/**
