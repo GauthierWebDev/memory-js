@@ -1,4 +1,5 @@
 const MemoryCard = require('./MemoryCard');
+const MemoryHUD = require('./MemoryHUD');
 
 // MemoryGameEngine est la class gérant tout ce qui est relatif
 // à la partie en cours.
@@ -9,6 +10,7 @@ class MemoryGameEngine {
 		this.maxSecondsPerGame = 120;
 		this.fruits = fruits;
     this.cards = [];
+		this.HUD = new MemoryHUD();
   }
 
 	/**
@@ -26,8 +28,6 @@ class MemoryGameEngine {
       // Par contre, la carte n'apparaît pas dans le DOM !
 			this.cards.push(newCard);
 		});
-
-    console.log(this.cards);
 	}
 }
 
