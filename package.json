@@ -1,0 +1,37 @@
+{
+  "name": "memory-js",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/GauthierWebDev/memory-js",
+  "author": "GauthierWebDev <gauthier@gauthierdaniels.fr>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "watch": "gulp watch",
+    "build": "gulp build",
+    "migrate": "node database/migrate.js"
+  },
+  "dependencies": {
+    "axios": "^0.25.0",
+    "chalk": "^4.1.2",
+    "dotenv": "^14.2.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "mariadb": "^2.5.5",
+    "mysql2": "^2.3.3",
+    "sanitizer": "^0.1.3",
+    "sequelize": "^6.13.0",
+    "simple-node-logger": "^21.8.12"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-sass": "^5.1.0",
+    "gulp-webpack": "^1.5.0",
+    "node-sass": "^7.0.1",
+    "sass": "^1.48.0",
+    "webpack": "^5.66.0",
+    "webpack-stream": "^7.0.0"
+  }
+}
