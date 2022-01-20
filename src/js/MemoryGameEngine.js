@@ -27,6 +27,31 @@ class MemoryGameEngine {
   }
 
 	/**
+	 * Soumet les informations de la partie et du formulaire
+	 * à notre serveur pour stocker les informations.
+	 * @param username
+	 */
+	submitScore(username) {
+		// todo
+	}
+
+	/**
+	 * Supprime la fenêtre modale et supprime les cartes de la grille de jeu
+	 * pour laisser apparaître le tableau des scores.
+	 */
+	displayLeaderboardHandler() {
+		// todo
+	}
+
+	/**
+	 * Gestion des méthodes pour l'animation de disparition de la
+	 * fenêtre modale de fin de partie et initialise une nouvelle partie.
+	 */
+	newGameHandler() {
+		// todo
+	}
+
+	/**
 	 * Gestion de la fin de partie.
 	 */
 	gameFinished() {
@@ -43,7 +68,10 @@ class MemoryGameEngine {
 			this.flippedCards,
 			this.fruits.filter((fruit) => fruit.found).length,
 			this.fruitsPerGame,
-			this.clock.elapsedTime
+			this.clock.elapsedTime,
+			() => this.newGameHandler(),
+			(username) => this.submitScore(username),
+			() => this.displayLeaderboardHandler()
 		);
 	}
 

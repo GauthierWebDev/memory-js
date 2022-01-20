@@ -91,7 +91,7 @@ class MemoryHUD {
 		// On clone le template de l'écran de fin de partie...
 		this.gameResultsContainer = document.importNode(this.gameResultsTemplate.content, true).querySelector('section');
 
-		// ... puis on modifie les données affichée par les données actuelles.
+		// ... puis on modifie les données affichées par les données actuelles.
 		this.gameResultsContainer.querySelector('#GameResultsMoves').innerHTML = flippedCards;
 		this.gameResultsContainer.querySelector('#GameResultsFound').innerHTML = foundPairs;
 		this.gameResultsContainer.querySelector('#GameResultsPairs').innerHTML = fruitsPerGame;
