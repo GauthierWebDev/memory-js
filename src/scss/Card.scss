@@ -1,0 +1,100 @@
+@import './vars';
+
+.Card {
+  /*
+  Puisque notre pseudo-élément "::after" a "absolute" comme valeur de position,
+  on défini ce conteneur (.Card) comme ayant une position relative.
+
+  Les règles de positionnement qui se feront sur notre pseudo-élément "::after"
+  se feront alors en fonction de l'élément ayant la classe CSS .Card
+  */
+  position: relative;
+  display: inline-block;
+  width: $cardWidthAndHeight;
+  height: $cardWidthAndHeight;
+  margin: $cardMargin;
+  overflow: hidden; // on masque tout ce qui déborde de l'élément
+  cursor: pointer;
+  box-shadow: 0 0 4px rgba($hidden, .5);
+  border-radius: 50%;
+
+  /*
+  La carte peut être sélectionnée sur la page (comme une sélection de texte),
+  ce qui n'est pas toujours joli.
+  On peut empêcher l'utilisateur de sélectionner cet élément et son contenu
+  avec la propriété user-select.
+
+  https://developer.mozilla.org/fr/docs/Web/CSS/user-select
+  */
+  user-select: none;
+
+  img {
+    width: $cardWidthAndHeight;
+    height: auto;
+    transition: .3s $cubic filter;
+    transform: translateY(var(--translateY));
+    pointer-events: none;
+  }
+
+  /*
+  On utilisera le pseudo-élément "::after" de nos cartes pour
+  altérer le visuel des cartes selon leur status (cachée ou trouvée).
+  Ici on cherche à faire le placement du pseudo-élément, pas son style !
+  */
+  &::after {
+    content: '';
+    position: absolute;
+    width: $cardWidthAndHeight;
+    height: $cardWidthAndHeight;
+    background: $hidden;
+    border-radius: 50%;
+    transition: .3s $cubic transform;
+    transform: scale(1);
+
+    // On désactive toutes les interactions du curseur sur ce pseudo-élément.
+    // https://developer.mozilla.org/fr/docs/Web/CSS/pointer-events
+    pointer-events: none;
+
+    /*
+    Bien que la propriété "inset" permet de définir nos attributs
+    top/right/bottom/left rapidement, il s'agit d'une fonctionnalité encore
+    expérimentale.
+
+    Par précaution et pour que notre carte s'affiche correctement sur tous les navigateurs,
+    on évitera de l'utiliser.
+
+    https://developer.mozilla.org/fr/docs/Web/CSS/inset
+    https://caniuse.com/?search=inset
+    */
+
+    // inset: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  // .Card--visible -> carte retournée, mais pas trouvée
+  &--visible {
+    pointer-events: none;
+    
+    &::after {
+      transform: scale(0);
+    }
+  }
+
+  // .Card--found -> carte trouvée
+  &--found {
+    // Puisque la carte a déjà été trouvée avec sa soeur,
+    // on désactive les interactions avec le curseur.
+    pointer-events: none;
+
+    img {
+      filter: grayscale(100%);
+    }
+
+    &::after {
+      background: rgba($hidden, .125);
+    }
+  }
+}

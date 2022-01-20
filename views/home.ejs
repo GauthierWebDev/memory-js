@@ -20,9 +20,14 @@ const scores = [
 
 <%- include('./components/header'); %>
 
-<ul id="Board" class="Board"></ul>
+<ul id="Board" class="Board">
+  <%# On commence par importer 28 cartes %>
+  <% for (let i = 0; i < 28; i += 1) { %>
+    <%- include('./components/card') %>
+  <% } %>
+</ul>
 
-<%- include('./components/leaderboard', { scores }); %>
+<%# include('./components/leaderboard', { scores }); %>
 
 <div class="GameInformations">
   <div class="Paper" id="elapsedTime">

@@ -1,0 +1,17 @@
+@import './vars';
+
+.Board {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  transition: .3s $cubic filter, .3s $cubic opacity;
+
+  &--vanish {
+    opacity: 0;
+  }
+
+  &--blurred {
+    filter: blur(2px);
+    pointer-events: none;
+  }
+}
