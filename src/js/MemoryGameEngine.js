@@ -25,6 +25,14 @@ class MemoryGameEngine {
   }
 
 	/**
+	 * Réinitialise l'interface du jeu.
+	 */
+	clearHUD() {
+		this.HUD.setElapsedTime(0, this.maxSecondsPerGame);
+		this.HUD.setFlippedCards(0);
+	}
+
+	/**
 	 * Actualise l'interface du jeu.
 	 */
   refreshHUD() {

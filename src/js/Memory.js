@@ -25,21 +25,24 @@ class Memory {
 		// ... puis on rend transparent le tableau des scores...
 		this.gameEngine.HUD.vanishLeaderboard();
 
+		// On réinitialise le HUD du jeu.
+		this.gameEngine.clearHUD();
+
 		// ... on masque la grille de jeu en mettant son opacité à 0...
 		this.gameEngine.HUD.vanishBoard();
 
     setTimeout(() => {
 			// ... on réinitialise la grille de jeu.
 			this.gameEngine.removeCards();
-			
-      // On crée de nouvelles cartes...
-      this.gameEngine.createCards();
 
-      // ...on met un `display: none;` sur le tableau des scores...
-      this.gameEngine.HUD.hideLeaderboard();
+			// On crée de nouvelles cartes...
+			this.gameEngine.createCards();
 
-      // ... puis on affiche la grille de jeu !
-      this.gameEngine.HUD.appearBoard();
+			// ...on met un `display: none;` sur le tableau des scores...
+			this.gameEngine.HUD.hideLeaderboard();
+
+			// ... puis on affiche la grille de jeu !
+			this.gameEngine.HUD.appearBoard();
     }, 300);
 	}
 
