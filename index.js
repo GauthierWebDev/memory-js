@@ -39,12 +39,23 @@ const tryConnection = async () => {
 	}
 };
 
+// On paramètre notre serveur :
+// 1. On précise le moteur de templating.
+app.set('view engine', 'ejs');
+// 2. On précise le dossier contenant nos vues.
+app.set('views', 'views');
+// 3. On permet le chargement du contenu de notre dossier assets dans nos vues (statique).
+app.use(express.static(__dirname + '/assets'));
+// 4. On permet le parsing des données JSON des requêtes à l'API.
+app.use(express.json());
+// 5. On permet le parsing des données dans les URL lors des requêtes à l'API.
+app.use(express.urlencoded({extended: true}));
+
 // On défini le port utilisé par notre application selon le port spécifié
 // dans le fichier .env.
 // Si aucun port n'est trouvé/défini dans le fichier .env,
 // on utilise le port 5000 (fallback).
 const port = process.env.PORT || 5000;
-
 
 // On vient maintenant tester la connexion à notre base de données.
 tryConnection()
