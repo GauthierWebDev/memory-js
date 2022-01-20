@@ -22,6 +22,8 @@ const scores = [
 
 <ul id="Board" class="Board"></ul>
 
+<%- include('./components/gameResults'); %>
+
 <%- include('./components/leaderboard', { scores }); %>
 
 <div class="GameInformations">
@@ -42,5 +44,6 @@ const scores = [
 </div>
 
 <template id="Card"><%- include('./components/card'); %></template>
+<template id="GameResults"><%- include('./components/gameResults'); %></template>
 
 <%- include('./components/footer'); %>
