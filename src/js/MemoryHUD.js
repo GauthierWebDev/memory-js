@@ -81,12 +81,18 @@ class MemoryHUD {
 	 * @param foundPairs
 	 * @param fruitsPerGame
 	 * @param elapsedTime
+	 * @param newGameHandler
+	 * @param submitScore
+	 * @param displayLeaderboardHandler
 	 */
   displayResults(
 		flippedCards,
 		foundPairs,
 		fruitsPerGame,
-		elapsedTime
+		elapsedTime,
+		newGameHandler,
+		submitScore,
+		displayLeaderboardHandler
   ) {
 		// On clone le template de l'écran de fin de partie...
 		this.gameResultsContainer = document.importNode(this.gameResultsTemplate.content, true).querySelector('section');
@@ -103,6 +109,28 @@ class MemoryHUD {
 			// d'envoyer son score, ainsi que le formulaire.
 			this.hideResultsForm();
 		}
+		else {
+			// Si toutes les paires ont été trouvées, on ajoute un écouteur d'événement `submit` sur le formulaire...
+			this.gameResultsContainer.querySelector('form').addEventListener('submit', (event) => {
+				// ... qui bloquera le fonctionnement par défaut du `submit` sur ce formulaire...
+				event.preventDefault();
+				// ... et appellera la méthode de soumission des résultats, par le biais du callback `submitScore`.
+				submitScore(document.getElementById('username').value);
+			})
+		}
+
+		// On ajoute un écouteur d'événement `click` sur le bouton de la fenêtre modale,
+		// qui actionnera une méthode propre au démarrage d'une nouvelle partie lorsque
+		// ce bouton sera cliqué (pour masquer la fenêtre modale et gérer d'autres animations).
+		this.gameResultsContainer
+			.querySelector('button[data-action="new-game"]')
+			.addEventListener('click', () => newGameHandler());
+
+    // On fait exactement la même chose pour le bouton qui est prévu pour afficher
+    // le tableau des scores
+    this.gameResultsContainer
+      .querySelector('button[data-action="leaderboard"]')
+      .addEventListener('click', () => displayLeaderboardHandler());
 
 		// Puis au bout d'une seconde...
 		setTimeout(() => {
