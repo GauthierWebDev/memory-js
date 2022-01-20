@@ -1,2 +1,2 @@
-(()=>{var t={557:t=>{t.exports=class{constructor(){this.fruits=[]}init(){}}}},r={};function e(n){var o=r[n];if(void 0!==o)return o.exports;var s=r[n]={exports:{}};return t[n](s,s.exports,e),s.exports}(()=>{const t=e(557);document.addEventListener("DOMContentLoaded",(()=>{(new t).init()}))})()})();
+(()=>{var t={557:t=>{t.exports=class{constructor(){this.fruits=[]}newGame(){alert("newGame")}attachEvent(){document.getElementById("new-game").addEventListener("click",(()=>this.newGame()))}init(){this.attachEvent()}}}},e={};function n(r){var a=e[r];if(void 0!==a)return a.exports;var s=e[r]={exports:{}};return t[r](s,s.exports,n),s.exports}(()=>{const t=n(557);document.addEventListener("DOMContentLoaded",(()=>{(new t).init()}))})()})();
 //# sourceMappingURL=index.js.map
