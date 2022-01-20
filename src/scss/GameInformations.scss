@@ -1,0 +1,62 @@
+@import './vars';
+
+.GameInformations {
+  // On va (encore une fois) conserver les mêmes habitudes,
+  // on ressort notre meilleur ami flex et on va centrer nos éléments !
+  display: flex;
+  align-items: center;
+  // Cependant on va faire en sorte que sur l'axe horizontal,
+  // chaque élément sera espacé de manière équitable.
+  justify-content: space-evenly;
+  margin: 3rem auto 0;
+
+  // D'ailleurs, "chaque élément" voulait dire "chaque .Paper" !
+  .Paper {
+    width: 14rem;
+  }
+
+  p {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: rgba($hidden, .5);
+    font-size: .9rem;
+
+    span {
+      margin-left: 2rem;
+      font-size: 1.5rem;
+    }
+  }
+
+  // On vient faire apparaître notre barre de chargement
+  // qui correspond au temps écoulé sur le temps maximal
+  // accordé.
+  .ProgressBar {
+    // Notre élément sera alors la "piste"...
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: rgba($hidden, .125);
+    height: .75rem;
+    width: 100%;
+
+    &::after {
+      // ... tandis que son pseudo-élément "::after"
+      // sera le visuel qui "chargera", par dessus la piste.
+      content: '';
+      transition: .3s $cubic width;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 100%;
+      background: rgba($hidden, .125);
+      // Non non, ce n'est pas un rêve (ou plutôt un cauchemar),
+      // on parle bien d'une variable qui n'est pas propre à SASS/SCSS !
+      // L'avantage, c'est qu'on va l'exploiter avec Javascript,
+      // où on va changer la valeur de `--width` à chaque fois que notre
+      // horloge interne de jeu demandera l'incrémentation du temps écoulé.
+      // On y reviendra sur la partie Javascript !
+      width: var(--width);
+    }
+  }
+}
