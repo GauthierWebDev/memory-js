@@ -57,6 +57,9 @@ app.use(express.urlencoded({extended: true}));
 // on utilise le port 5000 (fallback).
 const port = process.env.PORT || 5000;
 
+// On vient instancier nos routes.
+require('./routes')(app);
+
 // On vient maintenant tester la connexion à notre base de données.
 tryConnection()
 	.then((error) => {
