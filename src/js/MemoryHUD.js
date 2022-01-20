@@ -2,6 +2,7 @@ class MemoryHUD {
   constructor() {
     // Templates
     this.cardTemplate = document.getElementById('Card');
+		this.scoreTemplate = document.getElementById('Score');
 		this.gameResultsTemplate = document.getElementById('GameResults');
 
 		// Résultats de fin de partie
@@ -12,6 +13,7 @@ class MemoryHUD {
 
     // Tableau des scores    
 		this.leaderboardContainer = document.getElementById('Leaderboard');
+		this.scoresContainer = document.getElementById('Scores');
 
     // Cartes retournées
     this.flippedCardsSpan = document.querySelector(':scope #moves span');
@@ -45,6 +47,58 @@ class MemoryHUD {
 		const minutes = Math.floor(elapsedTime / 60);
 
 		return `${minutes}:${seconds}`;
+	}
+
+	/**
+	 * Converti une valeur de colonne `time` des bases de données
+	 * en secondes.
+	 * @param time
+	 * @returns {number}
+	 */
+	convertTimeToSeconds(time) {
+		let seconds = 0;
+		const splitTime = time.split(':');
+
+		// On converti les heures en secondes et on les ajoute aux secondes totales...
+		seconds += parseInt(splitTime[0], 10) * 3600; // 1 = 60 minutes = 3600 secondes
+		seconds += parseInt(splitTime[1], 10) * 60;
+		seconds += parseInt(splitTime[2], 10);
+
+		return seconds;
+	}
+
+	/**
+	 * Converti une valeur de colonne `time` des bases de données
+	 * en secondes puis est formatée dans le format m:SS.
+	 *
+	 * m = minutes sans préfixe (1 restera 1)
+	 *
+	 * SS = secondes avec préfixe (1 deviendra 01)
+	 * @param time
+	 * @returns {string}
+	 */
+	formatElapsedTimeFromDBTime(time) {
+		return this.formatElapsedTime(this.convertTimeToSeconds(time));
+	}
+
+	/**
+	 * Formate une date au format DD/MM/YYYY.
+	 *
+	 * DD = jour (1 deviendra 01)
+	 *
+	 * MM = mois (1 deviendra 01)
+	 *
+	 * YYYY = année (`2021`, `2022` et pas `21`, `22`)
+	 * @param date
+	 * @returns {string}
+	 */
+	formatDate(date) {
+		date = new Date(date);
+		const day = date.getDate();
+		const month = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1;
+		const year = date.getFullYear();
+
+		return `${day}/${month}/${year}`;
 	}
 
 	/**
@@ -171,6 +225,47 @@ class MemoryHUD {
 	 */
 	vanishResults() {
 		this.gameResultsContainer.classList.remove('GameResults--visible');
+	}
+
+	/**
+	 * Supprime tous les scores enregistrés dans le DOM.
+	 */
+	emptyLeaderboard() {
+		this.scoresContainer
+			.querySelectorAll('.Score:not(.ScoreHeader)')
+			.forEach((score) => score.outerHTML = '');
+	}
+
+	/**
+	 * Mets à jour le tableau des scores avec les données communiquées
+	 * en entrée.
+	 * @param scores
+	 */
+	updateLeaderboard(scores) {
+		this.emptyLeaderboard();
+		scores.forEach((score, index) => {
+			const scoreLi = document.importNode(this.scoreTemplate.content, true).querySelector('li');
+			scoreLi.querySelector('.Score-Rank').innerHTML = index + 1;
+			scoreLi.querySelector('.Score-Username').innerHTML = score.username;
+			scoreLi.querySelector('.Score-Duration').innerHTML = this.formatElapsedTimeFromDBTime(score.elapsedTime);
+			scoreLi.querySelector('.Score-Date').innerHTML = this.formatDate(score.finishedAt);
+
+			this.scoresContainer.append(scoreLi);
+		});
+
+		// Si nous avons des scores...
+		if (scores.length > 0) {
+			// ... alors on affiche la liste des scores...
+			this.leaderboardContainer.querySelector('.ifNoScores').classList.add('ifNoScores--hidden');
+			// ... puis on masque le paragraphe qui ne doit s'afficher que s'il
+			// n'y a aucun score visible.
+			this.scoresContainer.classList.remove('Scores--hidden');
+		}
+		else {
+			// Sinon, on fait tout l'inverse ici puisqu'il n'y a pas de scores.
+			this.leaderboardContainer.querySelector('.ifNoScores').classList.remove('ifNoScores--hidden');
+			this.scoresContainer.classList.add('Scores--hidden');
+		}
 	}
 
 	/**

@@ -53,7 +53,11 @@ class MemoryGameEngine {
 			finishedAt: this.finishedAt,
 		})
 			.then(({ data }) => {
-				console.log(data);
+				// Si l'enregistrement des données a fonctionné,
+				// on peut alors masquer supprimer le formulaire
+				// de la fenêtre modale.
+				this.HUD.updateLeaderboard(data.scores);
+				this.HUD.hideResultsForm();
 			});
 	}
 
