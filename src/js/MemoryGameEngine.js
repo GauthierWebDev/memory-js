@@ -32,8 +32,10 @@ class MemoryGameEngine {
 	gameFinished() {
 		// On stocke la date et heure de la fin de la partie.
 		this.finishedAt = new Date();
-		// On floute l'arrière plan
+		// On floute l'arrière plan.
 		this.HUD.blurBoard();
+    // On stoppe l'horloge interne du jeu.
+    this.clock.end();
 	}
 
 	/**
