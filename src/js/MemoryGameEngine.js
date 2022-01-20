@@ -85,6 +85,16 @@ class MemoryGameEngine {
 				this.HUD.vanishLeaderboard();
 				// ... on enlève le `display: none;` sur le tableau des scores...
 				this.HUD.displayLeaderboard();
+
+				// ... et enfin (promis c'est le dernier) après 300ms...
+				setTimeout(() => {
+					// ... on rétabli l'opacité du tableau des scores...
+					this.HUD.appearLeaderboard();
+					// ... on supprime du DOM la fenêtre modale...
+					this.HUD.hideResults();
+					// ... et pour terminer, on remet l'opacité de la grille de jeu à son état initial
+					this.HUD.appearBoard();
+				}, 300);
 			}, 300);
 		}, 500);
 	}

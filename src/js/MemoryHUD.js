@@ -291,6 +291,14 @@ class MemoryHUD {
 	}
 
 	/**
+	 * Supprime la classe CSS responsable d'une opacité à 0 sur
+	 * le tableau des scores.
+	 */
+	appearLeaderboard() {
+		this.leaderboardContainer.classList.remove('Leaderboard--vanish');
+	}
+
+	/**
 	 * Supprime le contenu de la grille de jeu.
 	 */
 	removeCards() {
