@@ -8,7 +8,7 @@ class MemoryGameEngine {
   constructor(fruits) {
     this.fruitsPerGame = 2;
 		this.msBetweenFlip = 1000;
-		this.maxSecondsPerGame = 120;
+		this.maxSecondsPerGame = 2;
 		this.fruits = fruits.shuffle().slice(0, this.fruitsPerGame);
     this.cards = [];
 		this.HUD = new MemoryHUD();
@@ -36,6 +36,8 @@ class MemoryGameEngine {
 		this.HUD.blurBoard();
     // On stoppe l'horloge interne du jeu.
     this.clock.end();
+		// On bloque la possibilité de retourner de nouvelles cartes.
+		this.canFlip = false;
 	}
 
 	/**
@@ -115,6 +117,15 @@ class MemoryGameEngine {
   }
 
 	/**
+	 * Vérifie si l'utilisateur est à court de temps pour déclencher la fin
+	 * de la partie, ou bien laisser l'utilisateur continuer de jouer
+	 * s'il lui reste du temps.
+	 */
+	checkElapsedTime() {
+		if (this.clock.elapsedTime >= this.maxSecondsPerGame) this.gameFinished();
+	}
+
+	/**
 	 * Incrémente le temps écoulé de 1 à chaque appel
 	 * puis rafraichi l'interface du jeu.
 	 */
@@ -123,6 +134,10 @@ class MemoryGameEngine {
 		this.clock.elapsedTime += 1;
 		// ... puis on actualise l'interface du jeu.
 		this.refreshHUD();
+
+		// Puisqu'il y a une limite de temps sur la partie,
+		// on vérifie si le joueur ne l'a pas dépassée.
+		this.checkElapsedTime();
 	}
   
   /**
