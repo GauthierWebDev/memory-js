@@ -10,11 +10,11 @@ const ScoreController = require("../controllers/Score");
 // On n'oublie donc pas de les fournir !
 
 const routes = (app) => {
-	// Cette première route retournera la vue de notre application.
-	app.get('/', (req, res) => new GlobalController(req, res).sendHome());
-	// Celle-ci est un endpoint pour notre API.
-	// Elle permet l'enregistrement de nouveaux scores.
-	app.post('/scoreSubmit', (req, res) => new ScoreController(req, res).scoreSubmit());
+  // Cette première route retournera la vue de notre application.
+  app.get('/', (req, res) => new GlobalController(req, res).sendHome());
+  // Celle-ci est un endpoint pour notre API.
+  // Elle permet l'enregistrement de nouveaux scores.
+  app.post('/scoreSubmit', (req, res) => new ScoreController(req, res).scoreSubmit());
 };
 
 module.exports = routes;

@@ -1,30 +1,30 @@
 <section class="GameResults">
-  <div class="Paper">
-    <strong>Fin de la partie !</strong>
+    <div class="Paper">
+        <strong>Fin de la partie !</strong>
 
-    <p>
-      En <span id="GameResultsMoves">-</span> cartes retournées,
-      vous avez trouvé <span id="GameResultsFound">-</span> paires sur <span id="GameResultsPairs">-</span>.
-      <br>
-      Le tout en un temps de <span id="GameResultsElapsedTime">-:--</span> !
-    </p>
+        <p>
+            En <span id="GameResultsMoves">-</span> cartes retournées,
+            vous avez trouvé <span id="GameResultsFound">-</span> paires sur <span id="GameResultsPairs">-</span>.
+            <br>
+            Le tout en un temps de <span id="GameResultsElapsedTime">-:--</span> !
+        </p>
 
-    <p class="onlyIfWon">
-      Vous pouvez enregistrer votre performance en saisissant un nom dans la case ci-dessous,
-      ou bien redémarrer une partie sans envoyer votre score.
-    </p>
+        <p class="onlyIfWon">
+            Vous pouvez enregistrer votre performance en saisissant un nom dans la case ci-dessous,
+            ou bien redémarrer une partie sans envoyer votre score.
+        </p>
 
-    <form class="GameResults-Form onlyIfWon" id="GameResultsForm">
-      <label class="Label" for="username">Nom d'utilisateur</label>
-      <input class="Input" id="username" type="text" maxlength="16" name="username" placeholder="Bozo le clown">
-      <button class="Button" type="submit">Enregistrer votre performance</button>
-    </form>
+        <form class="GameResults-Form onlyIfWon" id="GameResultsForm">
+            <label class="Label" for="username">Nom d'utilisateur</label>
+            <input class="Input" id="username" type="text" maxlength="16" name="username" placeholder="Bozo le clown">
+            <button class="Button" type="submit">Enregistrer votre performance</button>
+        </form>
 
-    <%#
-    On ira récupérer ces boutons lorsque l'on clonera le template qui contient cette section,
-    pour pouvoir y appliquer des fonctionnements distincts, d'où l'utilisation des dataset !
-    %>
-    <button data-action="new-game" class="Button">Nouvelle partie</button>
-    <button data-action="leaderboard" class="Button">Tableau des scores</button>
-  </div>
+        <%#
+        On ira récupérer ces boutons lorsque l'on clonera le template qui contient cette section,
+        pour pouvoir y appliquer des fonctionnements distincts, d'où l'utilisation des dataset !
+        %>
+        <button data-action="new-game" class="Button">Nouvelle partie</button>
+        <button data-action="leaderboard" class="Button">Tableau des scores</button>
+    </div>
 </section>

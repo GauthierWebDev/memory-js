@@ -5,20 +5,20 @@
 <%- include('./components/leaderboard', { scores }); %>
 
 <div class="GameInformations">
-  <div class="Paper" id="elapsedTime">
-    <p>
-      Temps écoulé
-      <span>0:00</span>
-    </p>
-    <div class="ProgressBar"></div>
-  </div>
+    <div class="Paper" id="elapsedTime">
+        <p>
+            Temps écoulé
+            <span>0:00</span>
+        </p>
+        <div class="ProgressBar"></div>
+    </div>
 
-  <div class="Paper" id="moves">
-    <p>
-      Cartes retournées
-      <span>0</span>
-    </p>
-  </div>
+    <div class="Paper" id="moves">
+        <p>
+            Cartes retournées
+            <span>0</span>
+        </p>
+    </div>
 </div>
 
 <template id="Card"><%- include('./components/card'); %></template>

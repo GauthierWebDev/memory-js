@@ -21,10 +21,10 @@ const sequelize = require('./index');
 // créer les tables et colonnes selon les modèles crées par
 // cette même instance de Sequelize.
 sequelize.sync()
-	.then(() => {
-		console.log(chalk.green('Toutes les migrations ont été faites !'));
-	})
-	.catch((error) => {
-		console.error(chalk.red('[ERROR] Une ou plusieurs migration(s) n\'ont pas pu être réalisée(s).'));
-		logger.error(error);
-	});
+  .then(() => {
+    console.log(chalk.green('Toutes les migrations ont été faites !'));
+  })
+  .catch((error) => {
+    console.error(chalk.red('[ERROR] Une ou plusieurs migration(s) n\'ont pas pu être réalisée(s).'));
+    logger.error(error);
+  });
