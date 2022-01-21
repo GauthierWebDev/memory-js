@@ -45,7 +45,7 @@ Une partie prend fin dès que le temps maximal accordé est écoulé, ou bien d�
 - La carte n'est pas retournée
 
 Dès que le joueur a retourné deux cartes et que les deux cartes comportent le même fruit, le joueur peut immédiatement retourner deux nouvelles cartes.  
-Dans le cas contraire, le joueur a un petit laps de temps pour visualiser les cartes qu'il a retourner avant de pouvoir retourner deux nouvelles cartes.
+Dans le cas contraire, le joueur a un petit laps de temps pour visualiser les cartes qu'il a retourné avant de pouvoir retourner deux nouvelles cartes.
 
 ---
 
@@ -54,7 +54,7 @@ Dans le cas contraire, le joueur a un petit laps de temps pour visualiser les ca
 ### 1 - ⚠️ Avant toutes choses ⚠️
 #### 1.1 - Dépendances pour transpilation
 Comme nous allons utiliser des syntaxes et fonctionnalités qui ne sont pas interprétées par les navigateurs, nous allons devoir transpiler notre code pour le rendre compatible.  
-[Gulp](https://gulpjs.com/) sera alors notre majordomme, il aura pour mission d'effectuer toutes les transpilations, mais il a besoin qu'on lui fournisse des outils pour pouvoir travailler !
+[Gulp](https://gulpjs.com/) sera alors notre majordome, il aura pour mission d'effectuer toutes les transpilations, mais il a besoin qu'on lui fournisse des outils pour pouvoir travailler !
 
 Alors commençons sans tarder par la récupération de ces dépendances, à l'aide de cette commande :
 > `yarn add gulp gulp-clean-css gulp-concat gulp-sass node-sass sass webpack webpack-stream -D`
@@ -81,14 +81,14 @@ Et voilà ! Nos fichiers et leurs modifications sont désormais prêts, il nous 
 Commençons par les dépendances du front : il n'y en a qu'une 😁  
 Il s'agit de la bibliothèque [Axios](https://axios-http.com/docs/intro), qui nous permettra de consommer notre API aisément.
 
-Niveau back-end, nous avons déjà plus de dépendances à préparer.. mais on n'est pas méchants, voici la liste de toutes les dépendances _(avec `axios`, si c'est pas beau !)_ :
+Niveau back-end, nous avons déjà plus de dépendances à préparer.. Mais on n'est pas méchants, voici la liste de toutes les dépendances _(avec `axios`, si c'est pas beau !)_ :
 > `yarn add axios chalk dotenv ejs express mariadb mysql2 sanitizer sequelize simple-node-logger`
 
 Ne perdons pas de temps et parlons de chacune d'entre-elles :
 - chalk : Stylisera un peu les messages que l'on souhaite afficher dans le terminal.
-- dotenv : Met à disposition les variables d'enrivonnement stockées dans le fichier `.env`.
+- dotenv : Met à disposition les variables d'environnement stockées dans le fichier `.env`.
 - ejs : Notre moteur de templating, qu'on utilisera pour concevoir les éléments de nos vues.
-- express : Le coeur de notre back-end, le framework !
+- express : Le cœur de notre back-end, le framework !
 - mysql2 : Ce driver _(pilote)_ permettra à sequelize de dialoguer avec notre base de données.
 - sanitizer : Utilitaire qui rendra sûre les chaînes de caractères qu'on lui donnera en échappant des caractères.
 - sequelize : ORM qui nous servira à communiquer avec notre base de données.
@@ -98,7 +98,7 @@ Ne perdons pas de temps et parlons de chacune d'entre-elles :
 Même si l'application a la "chance" d'être déjà développée, elle n'est pas pour autant "plug & play" !  
 Déjà, il va falloir commencer par créer une base de données pour accueillir la table qui contiendra les enregistrements des scores des joueurs.
 
-> `mysql -u root -p` _(puis on saisi le mot de passe pour l'utilisateur root)_  
+> `mysql -u root -p` _(puis on saisit le mot de passe pour l'utilisateur root)_  
 > `CREATE DATABASE memory;` _(ou tout autre nom pour la base de données !)_  
 > `exit` _(on quitte l'interface de mysql)_
 

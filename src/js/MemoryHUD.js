@@ -25,10 +25,12 @@ class MemoryHUD {
 
 	/**
 	 * Retourne un pourcentage (sous forme de chaîne de caractères)
-   * correspondant au temps écoulé.
-	 * 
-   * Exemple : 46%
+	 * correspondant au temps écoulé.
 	 *
+	 * Exemple : 46%
+	 *
+	 * @param elapsedTime
+	 * @param maxSecondsPerGame
 	 * @returns {string}
 	 */
 	formatElapsedTimeIntoPercent(elapsedTime, maxSecondsPerGame) {
@@ -105,6 +107,7 @@ class MemoryHUD {
 	 * Actualise les données relatives au temps écoulé sur le HUD.
 	 *
 	 * @param elapsedTime
+	 * @param maxSecondsPerGame
 	 */
 	setElapsedTime(elapsedTime, maxSecondsPerGame) {
 		this.elapsedTimeSpan.innerHTML = this.formatElapsedTime(elapsedTime);

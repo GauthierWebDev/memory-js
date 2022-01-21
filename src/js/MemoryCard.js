@@ -12,8 +12,13 @@ class MemoryCard {
 		this.flipCard = flipCard;
 	}
 
+	/**
+	 * On prépare le contenu de la carte à insérer dans le DOM.
+	 * @param template
+	 * @param board
+	 */
 	prepareCardDOM(template, board) {
-    // On commence par cloner le template déjà esistant...
+    // On commence par cloner le template déjà existant...
 		this.DOMElement = document.importNode(template.content, true).querySelector('li');
     
     // ... on lui ajoute une variable CSS pour afficher

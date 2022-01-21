@@ -20,7 +20,7 @@ function jsTranspile(callback) {
     // On place le fichier de sortie dans le dossier `assets/js`.
 		.pipe(gulp.dest('assets/js'));
   
-  // On a fini la transpilation JS, on peut déclancher le callback.
+  // On a fini la transpilation JS, on peut déclencher le callback.
 	callback();
 }
 
@@ -39,7 +39,7 @@ function cssTranspile(callback) {
     // On place le fichier de sortie dans le dossier `assets/css`.
 		.pipe(gulp.dest('assets/css'));
 
-  // On a fini la transpilation CSS, on peut déclancher le callback.
+  // On a fini la transpilation CSS, on peut déclencher le callback.
 	callback();
 }
 

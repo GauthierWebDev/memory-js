@@ -7,7 +7,7 @@ const MemoryHUD = require('./MemoryHUD');
 // à la partie en cours.
 class MemoryGameEngine {
   constructor(fruits, newGameCallback) {
-    this.fruitsPerGame = 1;
+    this.fruitsPerGame = 14;
 		this.msBetweenFlip = 1000;
 		this.maxSecondsPerGame = 120;
 		this.fruits = fruits.shuffle().slice(0, this.fruitsPerGame);
@@ -181,8 +181,8 @@ class MemoryGameEngine {
   
   /**
 	 * Gestion des cartes actuellement retournées (hors cartes trouvées).
-   * @param {[]}
-   */
+	 * @param cards
+	 */
 	checkVisibleCards(cards) {
 		// On modifie la valeur de la propriété "canFlip" à false pour
 		// pouvoir interdire le retournement d'autres cartes.
@@ -269,7 +269,7 @@ class MemoryGameEngine {
   
   /**
 	 * Gestion du retournement des cartes vers face visible.
-	 * @param {MemoryCard}
+	 * @param currentCard
 	 */
 	flipCard(currentCard) {
     // Si le joueur ne peut pas retourner de cartes pour le moment,

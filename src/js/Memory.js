@@ -53,7 +53,7 @@ class Memory {
 	retrieveFruits() {
 		// On stocke tous les fruits disponibles dans le jeu et pour
 		// chaque fruit, on instancie à chaque fois la classe `MemoryFruit`.
-		fruitsData.forEach((fruit) => {
+		fruitsData.map((fruit) => {
       this.fruits.push(new MemoryFruit(fruit.name, fruit.translateY));
     });
 	}
